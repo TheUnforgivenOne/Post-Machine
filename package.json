@@ -1,0 +1,16 @@
+{
+  "name": "post-machine",
+  "version": "0.0.1",
+  "description": "JS realization of Post machine",
+  "author": "Vladislav Potapov",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheUnforgivenOne/Post-Machine.git"
+  },
+  "dependencies": {
+    "jquery": "^3.5.0"
+  }
+}
