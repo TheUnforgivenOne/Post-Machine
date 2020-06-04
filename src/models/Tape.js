@@ -11,8 +11,8 @@ class Tape {
     this.boxId = parseInt(tapeLength / 2);
   }
 
-  printTape() {
-    this.tape.map((cell) => console.log(cell.value));
+  set setBoxId(newId) {
+    this.boxId = newId;
   }
 
   moveBox(direction) {
@@ -20,9 +20,9 @@ class Tape {
   }
 
   toggleCell() {
-    this.tape[this.boxId].value === true
-      ? (this.tape[this.boxId].value = false)
-      : (this.tape[this.boxId].value = true);
+    this.tape[this.boxId].state === true
+      ? (this.tape[this.boxId].state = false)
+      : (this.tape[this.boxId].state = true);
   }
 }
 

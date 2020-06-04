@@ -5,15 +5,15 @@
  */
 class Cell {
   constructor() {
-    this._value = false;
+    this._state = false;
   }
 
-  get value() {
-    return this._value;
+  get state() {
+    return this._state;
   }
 
-  set value(newValue) {
-    this._value = newValue;
+  set state(newValue) {
+    this._state = newValue;
   }
 }
 

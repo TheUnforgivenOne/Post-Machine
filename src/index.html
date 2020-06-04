@@ -6,7 +6,35 @@
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
-    <div id="root"></div>
+    <div class="b-wrapper">
+      <div class="b-wrapper__header">
+        Header
+      </div>
+      <div class="b-wrapper__tape-section">
+        <input type="button" class="b-tape-section__button" value="&#9668;" />
+          <div id="tape" class="b-tape-section__tape"></div>
+          <script type="text/template" id="tapeTemplate">
+            <% tape[20].state = true; console.log(boxId); %>
+            <% tape.forEach((cell) => { %>
+            <div id="<%= tape.indexOf(cell) %>" class="b-tape__cell">
+              <div class="b-cell__box">
+                <%= tape.indexOf(cell) === boxId ? "v" : null %>
+              </div>
+              <div class="b-cell__state">
+                <%= cell.state === true ? "&bull;" : null %>
+              </div>
+            </div>
+            <% }); %>
+          </script>
+        <input type="button" class="b-tape-section__button" value="&#9658;" />
+      </div>
+      <div class="b-wrapper__commands">
+        Commands
+      </div>
+      <div class="b-wrapper__log">
+        Log
+      </div>
+    </div>
     <script src="../dist/bundle.js"></script>
   </body>
 </html>

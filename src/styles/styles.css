@@ -1,0 +1,49 @@
+.b-wrapper {
+    padding-top: 50px;
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.b-wrapper__header {
+    height: 200px;
+}
+
+.b-wrapper__tape-section {
+    margin: 0 50px;
+    display: flex;
+}
+
+.b-tape-section__tape {
+    overflow-x: auto;
+    display: flex;
+}
+
+.b-tape-section__button {
+    margin: 0 8px;
+}
+
+.b-tape__cell {
+    margin: 0 1px;
+}
+
+.b-cell__box {
+    height: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.b-cell__state {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.b-wrapper__commands {
+    padding: 20px 50px;
+}
+
+.b-wrapper__log {
+    height: 500px;
+    border: 1px solid black;
+}
