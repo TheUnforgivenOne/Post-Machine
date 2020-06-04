@@ -11,10 +11,9 @@
         Header
       </div>
       <div class="b-wrapper__tape-section">
-        <input type="button" class="b-tape-section__button" value="&#9668;" />
+        <input type="button" id="moveBoxLeft" class="b-tape-section__button" value="&#9668;" />
           <div id="tape" class="b-tape-section__tape"></div>
           <script type="text/template" id="tapeTemplate">
-            <% tape[20].state = true; console.log(boxId); %>
             <% tape.forEach((cell) => { %>
             <div id="<%= tape.indexOf(cell) %>" class="b-tape__cell">
               <div class="b-cell__box">
@@ -26,7 +25,7 @@
             </div>
             <% }); %>
           </script>
-        <input type="button" class="b-tape-section__button" value="&#9658;" />
+        <input type="button" id="moveBoxRight" class="b-tape-section__button" value="&#9658;" />
       </div>
       <div class="b-wrapper__commands">
         Commands

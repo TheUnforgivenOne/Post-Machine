@@ -7,22 +7,32 @@ import Cell from "./Cell";
  */
 class Tape {
   constructor(tapeLength) {
-    this.tape = new Array(tapeLength).fill().map((cell) => (cell = new Cell()));
-    this.boxId = parseInt(tapeLength / 2);
+    this._tape = new Array(tapeLength)
+      .fill()
+      .map((cell) => (cell = new Cell()));
+    this._boxId = parseInt(tapeLength / 2);
   }
 
-  set setBoxId(newId) {
-    this.boxId = newId;
+  get tape() {
+    return this._tape;
+  }
+
+  get boxId() {
+    return this._boxId;
+  }
+
+  set boxId(newId) {
+    this._boxId = newId;
   }
 
   moveBox(direction) {
     direction === "left" ? this.boxId-- : this.boxId++;
   }
 
-  toggleCell() {
-    this.tape[this.boxId].state === true
-      ? (this.tape[this.boxId].state = false)
-      : (this.tape[this.boxId].state = true);
+  toggleCell(cellId) {
+    this.tape[cellId].state === true
+      ? (this.tape[cellId].state = false)
+      : (this.tape[cellId].state = true);
   }
 }
 
