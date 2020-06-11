@@ -41,6 +41,46 @@
 
 .b-wrapper__commands {
     padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.b-commands-list__command {
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px 0;
+    display: flex;
+}
+
+.b-command__id {
+    margin: 0 10px;
+}
+
+.b-command__text {
+    width: 300px;
+    margin: 0 10px;
+}
+
+.b-command__edit-button {
+    margin: 0 10px;
+}
+
+.b-command__delete-button {
+    margin: 0 10px;
+}
+
+.b-commands__create-command {
+    padding-top: 30px;
+}
+
+.b-create-command__command-text {
+
+}
+
+.b-create-command__submit-button {
+    margin-top: 30px;
+    background-color: lightgreen;
 }
 
 .b-wrapper__log {

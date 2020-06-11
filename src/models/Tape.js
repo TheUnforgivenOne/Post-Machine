@@ -30,9 +30,7 @@ class Tape {
   }
 
   toggleCell(cellId) {
-    this.tape[cellId].state === true
-      ? (this.tape[cellId].state = false)
-      : (this.tape[cellId].state = true);
+    this.tape[cellId].state = !this.tape[cellId].state
   }
 }
 

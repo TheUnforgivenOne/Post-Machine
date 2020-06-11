@@ -11,24 +11,67 @@
         Header
       </div>
       <div class="b-wrapper__tape-section">
-        <input type="button" id="moveBoxLeft" class="b-tape-section__button" value="&#9668;" />
-          <div id="tape" class="b-tape-section__tape"></div>
-          <script type="text/template" id="tapeTemplate">
-            <% tape.forEach((cell) => { %>
-            <div id="<%= tape.indexOf(cell) %>" class="b-tape__cell">
-              <div class="b-cell__box">
-                <%= tape.indexOf(cell) === boxId ? "v" : null %>
-              </div>
-              <div class="b-cell__state">
-                <%= cell.state === true ? "&bull;" : null %>
-              </div>
+        <input
+          type="button"
+          id="moveBoxLeft"
+          class="b-tape-section__button"
+          value="&#9668;"
+        />
+        <div id="tape" class="b-tape-section__tape"></div>
+        <script type="text/template" id="tapeTemplate">
+          <% tape.forEach((cell) => { %>
+          <div class="b-tape__cell">
+            <div class="b-cell__box">
+              <%= tape.indexOf(cell) === boxId ? "v" : null %>
             </div>
-            <% }); %>
-          </script>
-        <input type="button" id="moveBoxRight" class="b-tape-section__button" value="&#9658;" />
+            <div class="b-cell__state">
+              <%= cell.state === true ? "&bull;" : null %>
+            </div>
+          </div>
+          <% }); %>
+        </script>
+        <input
+          type="button"
+          id="moveBoxRight"
+          class="b-tape-section__button"
+          value="&#9658;"
+        />
       </div>
       <div class="b-wrapper__commands">
-        Commands
+        <div class="b-commands__commands-list"></div>
+        <script type="text/template" id="commandsListTemplate">
+          <% if (commands.length === 0) { %>
+          <div>No commands</div>
+          <% } else { %>
+          <ol>
+          <% commands.forEach((command, index) => { %>
+            <li class="b-commands-list__command">
+              <strong class="b-command__id">
+                <%= index + 1 %>
+              </strong>
+              <span class="b-command__text">
+                <%= command %>
+              </span>
+              <input type="button" class="b-command__edit-button" value="Edit" />
+              <input type="button" class="b-command__delete-button" value="Delete" />
+            </li>
+          <% }); %>
+          </ol>
+          <% } %>
+        </script>
+        <div class="b-commands__create-command">
+          <form id="createCommandForm">
+            <label>
+              Enter command:
+              <input type="text" class="b-create-command__command-text" />
+            </label>
+            <input
+              type="submit"
+              class="b-create-command__submit-button"
+              value="Done"
+            />
+          </form>
+        </div>
       </div>
       <div class="b-wrapper__log">
         Log
