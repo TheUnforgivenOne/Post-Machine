@@ -3,7 +3,7 @@ import _ from "lodash";
 
 import Tape from "./models/Tape";
 
-const tape = new Tape(41);
+const tape = new Tape();
 let commands = [];
 
 const commandCreationHandler = (editBtnIndex = null) => {
@@ -49,14 +49,14 @@ const renderTape = () => {
 
   $(".b-cell__box").each((index, box) => {
     $(box).on("click", () => {
-      tape.boxId = index;
+      tape.boxId = index - 10;
       renderTape();
     });
   });
 
   $(".b-cell__state").each((index, cell) => {
     $(cell).on("click", () => {
-      tape.toggleCell(index);
+      tape.toggleCell(index-10);
       renderTape();
     });
   });

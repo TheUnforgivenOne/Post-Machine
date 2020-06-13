@@ -27,9 +27,11 @@
 }
 
 .b-cell__box {
-    height: 20px;
+    height: 40px;
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .b-cell__state {

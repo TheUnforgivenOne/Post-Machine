@@ -1,16 +1,12 @@
-import Cell from "./Cell";
-
 /**
  * Class whose objects describe the state of tape
  *
  * @constructor
  */
 class Tape {
-  constructor(tapeLength) {
-    this._tape = new Array(tapeLength)
-      .fill()
-      .map((cell) => (cell = new Cell()));
-    this._boxId = parseInt(tapeLength / 2);
+  constructor() {
+    this._tape = [];
+    this._boxId = 0;
   }
 
   get tape() {
@@ -30,7 +26,9 @@ class Tape {
   }
 
   toggleCell(cellId) {
-    this.tape[cellId].state = !this.tape[cellId].state
+    this._tape.indexOf(cellId) === -1
+      ? this._tape.push(cellId)
+      : this._tape.splice(this._tape.indexOf(cellId), 1)
   }
 }
 
