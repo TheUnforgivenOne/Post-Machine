@@ -6,15 +6,32 @@ import Tape from "./models/Tape";
 const tape = new Tape();
 let commands = [];
 
-const commandCreationHandler = (editBtnIndex = null) => {
+const validateCommand = (command) => {
+  const parsedCommand = command.split(" ");
+  let commandIsValid = false;
+
+  switch (parsedCommand[0]) {
+    case "!":
+      parsedCommand.length === 1 ? (commandIsValid = true) : null;
+      break;
+    case "?":
+      parsedCommand.length === 3 ? (commandIsValid = true) : null;
+      break;
+    default:
+      parsedCommand.length === 2 ? (commandIsValid = true) : null;
+  }
+  return commandIsValid;
+};
+
+const commandCreationHandler = () => {
   const textField = $(".b-create-command__command-text");
 
-  if (editBtnIndex !== null) {
-    textField.val(commands[editBtnIndex]);
-  } else {
+  if (validateCommand(textField.val())) {
     commands.push(textField.val());
+    textField.val("");
+  } else {
+    alert("Wrong syntax");
   }
-  textField.val('');
 
   renderCommandsList();
 };
@@ -56,7 +73,7 @@ const renderTape = () => {
 
   $(".b-cell__state").each((index, cell) => {
     $(cell).on("click", () => {
-      tape.toggleCell(index-10);
+      tape.toggleCell(index - 10);
       renderTape();
     });
   });
@@ -65,18 +82,20 @@ const renderTape = () => {
 const renderCommandsList = () => {
   const tmpl = _.template($("#commandsListTemplate").html());
 
-  $(".b-commands__commands-list").html(tmpl({commands}));
+  $(".b-commands__commands-list").html(tmpl({ commands }));
 
-  $(".b-command__edit-button").each((editBtnIndex, btn) => {
-    $(btn).on("click", (event) => {
-      event.preventDefault();
-      commandCreationHandler(editBtnIndex);
-    });
-  });
+  // $(".b-command__edit-button").each((editBtnIndex, btn) => {
+  //   $(btn).on("click", (event) => {
+  //     event.preventDefault();
+  //     commandCreationHandler(editBtnIndex);
+  //   });
+  // });
 
   $(".b-command__delete-button").each((deleteBtnIndex, btn) => {
     $(btn).on("click", () => {
-      commands = commands.filter((com, comIndex) => comIndex !== deleteBtnIndex);
+      commands = commands.filter(
+        (com, comIndex) => comIndex !== deleteBtnIndex
+      );
       renderCommandsList();
     });
   });
