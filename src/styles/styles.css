@@ -73,7 +73,7 @@
 }
 
 .b-commands__create-command {
-    padding-top: 30px;
+
 }
 
 .b-create-command__command-text {
@@ -82,6 +82,13 @@
 
 .b-create-command__submit-button {
     margin-top: 30px;
+    background-color: lightgreen;
+}
+
+.b-commands__run-program {
+    margin-top: 30px;
+}
+.b-run-program__button {
     background-color: lightgreen;
 }
 

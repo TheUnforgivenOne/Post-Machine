@@ -7,6 +7,7 @@ class Tape {
   constructor() {
     this._tape = [];
     this._boxId = 0;
+    this._tapeShowLength = 21;
   }
 
   get tape() {
@@ -15,6 +16,10 @@ class Tape {
 
   get boxId() {
     return this._boxId;
+  }
+
+  get tapeShowLength() {
+    return this._tapeShowLength;
   }
 
   set boxId(newId) {

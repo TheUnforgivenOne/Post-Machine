@@ -19,14 +19,14 @@
         />
         <div id="tape" class="b-tape-section__tape"></div>
         <script type="text/template" id="tapeTemplate">
-          <% for (let i = -10; i < 11; i++) { %>
+          <% for (let i = 0; i < tapeLength; i++) { %>
           <div class="b-tape__cell">
             <div class="b-cell__box">
-              <span><%= boxId === i ? "v" : "&nbsp;" %></span>
-              <span><%= i %></span>
+              <span><%= boxId === i - (tapeLength/2).toFixed() + 1 ? "v" : "&nbsp;" %></span>
+              <span><%= i - (tapeLength/2).toFixed() + 1 %></span>
             </div>
             <div class="b-cell__state">
-              <span><%= tape.indexOf(i) !== -1 ? "&bull;" : null %></span>
+              <span><%= tape.indexOf(i - (tapeLength/2).toFixed() + 1) !== -1 ? "&bull;" : null %></span>
             </div>
           </div>
           <% } %>
@@ -72,6 +72,14 @@
               value="Add"
             />
           </form>
+        </div>
+        <div class="b-commands__run-program">
+          <input
+            type="button"
+            id="executeProgram"
+            class="b-run-program__button"
+            value="Run program"
+          />
         </div>
       </div>
       <div class="b-wrapper__log">

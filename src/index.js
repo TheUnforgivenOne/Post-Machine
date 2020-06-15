@@ -4,21 +4,18 @@ import _ from "lodash";
 import Tape from "./models/Tape";
 
 const tape = new Tape();
-let commands = [];
+let commands = [">", "? 3; 1;", "V", "!"];
 
 const validateCommand = (command) => {
   const parsedCommand = command.split(" ");
   let commandIsValid = false;
 
   switch (parsedCommand[0]) {
-    case "!":
-      parsedCommand.length === 1 ? (commandIsValid = true) : null;
-      break;
     case "?":
       parsedCommand.length === 3 ? (commandIsValid = true) : null;
       break;
     default:
-      parsedCommand.length === 2 ? (commandIsValid = true) : null;
+      parsedCommand.length === 1 ? (commandIsValid = true) : null;
   }
   return commandIsValid;
 };
@@ -34,6 +31,69 @@ const commandCreationHandler = () => {
   }
 
   renderCommandsList();
+};
+
+const executeProgramHandler = (commands) => {
+  console.log("Running");
+  let commandToExecute = 0;
+
+  while (commandToExecute < commands.length) {
+    console.log("Executing command:", commands[commandToExecute]);
+    const parsedCommand = commands[commandToExecute].split(" ");
+
+    switch (parsedCommand[0]) {
+      case "<":
+        console.log("Moving left");
+        tape.moveBox("left");
+        renderTape();
+        break;
+      case ">":
+        console.log("Moving right");
+        tape.moveBox("right");
+        renderTape();
+        break;
+      case "V":
+        if (tape.tape.indexOf(tape.boxId) === -1) {
+          console.log("Marking cell with index", tape.boxId);
+          tape.toggleCell(tape.boxId);
+          renderTape();
+        } else {
+          console.log("Program exit with failure");
+          commandToExecute = commands.length;
+        }
+        break;
+      case "X":
+        if (tape.tape.indexOf(tape.boxId) !== -1) {
+          console.log("Removing mark on cell with index", tape.boxId);
+          tape.toggleCell(tape.boxId);
+          renderTape();
+        } else {
+          console.log("Program running ends with failure");
+          commandToExecute = commands.length;
+        }
+        break;
+      case "?":
+        if (tape.tape.indexOf(tape.boxId) === -1) {
+          console.log("First state");
+          console.log(
+            "Moving to command",
+            Number(parsedCommand[1].slice(0, -1))
+          );
+          commandToExecute = Number(parsedCommand[1].slice(0, -1)) - 2;
+        } else {
+          console.log("Second state");
+          console.log(
+            "Moving to command",
+            Number(parsedCommand[2].slice(0, -1))
+          );
+          commandToExecute = Number(parsedCommand[2].slice(0, -1)) - 2;
+        }
+        break;
+      default:
+        console.log("Program running ends successfully");
+    }
+    commandToExecute++;
+  }
 };
 
 // Event listeners for moving box
@@ -52,6 +112,10 @@ const initEventListeners = () => {
     event.preventDefault();
     commandCreationHandler();
   });
+
+  $("#executeProgram").on("click", () => {
+    executeProgramHandler(commands);
+  });
 };
 
 const renderTape = () => {
@@ -61,19 +125,20 @@ const renderTape = () => {
     tmpl({
       boxId: tape.boxId,
       tape: tape.tape,
+      tapeLength: tape.tapeShowLength,
     })
   );
 
   $(".b-cell__box").each((index, box) => {
     $(box).on("click", () => {
-      tape.boxId = index - 10;
+      tape.boxId = index - (tape.tapeShowLength / 2).toFixed() + 1;
       renderTape();
     });
   });
 
   $(".b-cell__state").each((index, cell) => {
     $(cell).on("click", () => {
-      tape.toggleCell(index - 10);
+      tape.toggleCell(index - (tape.tapeShowLength / 2).toFixed() + 1);
       renderTape();
     });
   });
